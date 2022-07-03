@@ -11,7 +11,7 @@ import {Screen} from "../Elements/Screen";
 
 
 function SignUpPage(props){
-    console.log(props);
+
     const [name, setName]=useState("");
     const [email, setEmail]=useState("");
     const [password,setPassword]=useState("");
@@ -43,8 +43,8 @@ function SignUpPage(props){
 
                     <Input type="text" placeholder='Nome' value={name} onChange={(e)=>setName(e.target.value)}/>
                     <Input type="text" placeholder='E-mail' value={email} onChange={(e)=>setEmail(e.target.value)}/>
-                    <Input type="text" placeholder='Senha' value={password} onChange={(e)=>setPassword(e.target.value)}/>
-                    <Input type="text" placeholder='Confirme a senha' value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)}/>
+                    <Input type="password" placeholder='Senha' value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                    <Input type="password" placeholder='Confirme a senha' value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)}/>
                     <Button type="submit" value="Submit">
           Cadastrar
         </Button>
