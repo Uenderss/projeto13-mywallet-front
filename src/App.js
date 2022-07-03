@@ -1,10 +1,12 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
-import SignInPage from "./SignInPage.js";
-import SignUpPage from "./SignUpPage.js";
-import HomePage from "./HomePage.js";
-import DepositPage from "./DepositPage.js";
-import WithdrawPage from "./WithdrawPage.js";
+import GlobalCss from "./GlobalCss";
+
+import SignInPage from "./pages/SignInPage";
+import SignUpPage from "./pages/SignUpPage";
+import HomePage from "./pages/HomePage";
+import DepositPage from "./pages/DepositPage";
+import WithdrawPage from "./pages/WithdrawPage";
 
 
 function App(){
