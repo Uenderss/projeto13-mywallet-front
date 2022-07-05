@@ -3,35 +3,49 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../UserContext";
 
-import Logo from "./Elementos/Logo";
-import { Input } from "../Elements/Input";
-import { Button } from "../Elements/Button";
-import { StyledLink } from "../Elements/StyledLink";
-import { Screen } from "../Elements/Screen";
+import Logo from "../elements/Logo";
+import { Input } from "../elements/Input";
+import { Button } from "../elements/Button";
+import { Screen } from "../elements/Screen";
+import { StyledLink } from "../elements/StyledLink";
 
-function SignUpPage(props) {
+import dotenv from 'dotenv';
+dotenv.config();
+
+function SignInPage(props) {
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  async function handleSubmit(e) {
-    e.preventDefaut();
-    try {
-      const response = await axios.post("http://localhost:5000/sign-in", {
-        email,
-        password,
-      });
-      const { token, name } = response.data;
-      setUser({name,token});
-      navigate("/home");
-    } catch (error) {
-      alert("Try again! Invalid email or password.");
-      console.log(error.response);
-    }
-  }
+  const { setDados } = useContext(UserContext);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+  
+    axios
+      .post("https://projeto13-mywallet-back-t6.herokuapp.com/signin", {
+        email,
+        password
+
+      }).then(function (response) {
+        localStorage.setItem('token',response.data.token);
+        setDados( response.data);
+        console.log(response.data);
+        if(response.data.name !== null){
+           navigate("/home");
+        }else{
+          alert("Erro meu querido");
+        }
+
+
+      }).catch(function (error) {
+        alert("Email ou senha invalido. Tente novamente!");
+        setEmail("");
+        setPassword("");
+        console.log(error);
+      });
+  }
   return (
     
       <Screen>
@@ -40,7 +54,7 @@ function SignUpPage(props) {
           <form onSubmit={handleSubmit}>
             
             <Input
-              type="text"
+              type="email"
               placeholder="E-mail"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -50,7 +64,9 @@ function SignUpPage(props) {
               type="password"
               placeholder="Senha"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="on"
+              onChange={(e) => setPassword(e.target.value)
+              }
             />
             <Button type="submit" value="Submit">
               Entrar
@@ -58,8 +74,8 @@ function SignUpPage(props) {
           </form>
         </div>
         <div>
-          <StyledLink to="/">
-            <h5>Primeira ves? Cadastra-se!</h5>
+          <StyledLink to="/signup">
+            <h5>Primeira vez? Cadastra-se!</h5>
           </StyledLink>
         </div>
       </Screen>
@@ -67,4 +83,4 @@ function SignUpPage(props) {
   );
 }
 
-export default SignUpPage;
+export default SignInPage;

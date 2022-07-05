@@ -1,5 +1,9 @@
-import React from 'react';
+import React,{StrictMode} from 'react';
 import ReactDom from 'react-dom';
-import App from './components/App';
+import App from './App';
+import GlobalCss from "./GlobalCss";
 
-ReactDom.render( <App/>, document.getElementById('root'));
+ReactDom.render( <StrictMode>
+    <GlobalCss />
+    <App />
+  </StrictMode>, document.getElementById('root'));

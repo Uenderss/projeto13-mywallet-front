@@ -18,8 +18,6 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
 	border: 0;
 	font-size: 100%;
 	font: inherit;
@@ -28,12 +26,12 @@ time, mark, audio, video {
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-	display: block;
+	display: flex;
 }
 body {
   font-family: 'Raleway';
   font-size: 14px;
-  background-color: #F7F7F7;
+  background: #8c11be;
   /* line-height: 1; */
 }
 ol, ul {
